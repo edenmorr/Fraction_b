@@ -4,11 +4,17 @@
 #include <sstream>
 #include <stdexcept>
 #include <string>
+#include <bits/stdc++.h>
 using namespace std;
 
 namespace ariel{
+      
+      int gcd(int numerator, int denominator);//ensures that the Fraction object is in its simplest form, where the numerator and denominator have no common factors other than 1.
 
+     
     class Fraction {
+
+    
 
     private:
     int numerator;
@@ -18,6 +24,18 @@ namespace ariel{
     Fraction(int numerat, int denomin);
     Fraction(float number);
     Fraction();
+    bool static addOverflow(Fraction frac1, Fraction frac2)
+        {
+            Fraction temp = frac1 + frac2;
+            if(frac1>0 && frac2>0 && temp<0){
+                return true;
+            }
+            if(frac1<0 && frac2<0 && temp>0){
+                return true;
+            }
+            return false;
+        }
+    void reduce();
 
     void setNumerator(int numerator1) {
         numerator = numerator1;
@@ -35,7 +53,6 @@ namespace ariel{
         return denominator;
     }
     
-      friend int gcd(int numerator, int denominator);//ensures that the Fraction object is in its simplest form, where the numerator and denominator have no common factors other than 1.
         friend Fraction float_to_frac(float num);
 
         // im compering and doing operetion numbers with objects because the exemple in the demo 
